@@ -1,36 +1,36 @@
 extends layout
-
+include fonksiyonlar/yildiz
 block content
   .row.page-header
     .col-lg-12
-      h1 Şehzade Döner
+      h1=mekanBaslik 
   .row 
     .col-xs-12.col-md-12 
       .row
         .col-xs-12.col-sm-6 
           p.rating 
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty 
-          p Bahçelievler Mahallesi 
+            +puanOlustur(mekanDetay.puan) 
+          p= mekanDetay.adres  
           .panel.panel-primary 
             .panel-heading
               h2.panel-title Açılış Saatleri
             .panel-body
+            each saat in mekanDetay.saatler 
               p
-                | Pazartesi-Cuma: 8:00-23:30
-              p 
-                | Cumartesi-Pazar: 8:00-22:30
+                | #{saat.gunler}:&nbsp;
+                if (saat.kapali)
+                  | Kapalı
+                else
+                  | #{saat.acilis}-#{saat.kapanis}
+              
+                
           .panel.panel-primary 
             .panel-heading 
               h2.panel-title Neler Var ?
             .panel-body
-              span.label.label-warning Dürüm 
-              | &nbsp;
-              span.label.label-warning Kebap
-              | &nbsp;
+              each imkan in mekanDetay.imkanlar 
+                span.label.label-warning= imkan
+                | &nbsp;
                
               
         .col-xs-12.col-sm-6
@@ -38,8 +38,8 @@ block content
             .panel-heading
               h2.panel-title Konum Bilgisi
             .panel-body
-              -var enlem=37.78
-              -var boylam=30.56
+              -var enlem=mekanDetay.koordinatlar.enlem 
+              -var boylam=mekanDetay.koordinatlar.boylam
               img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center='+enlem+','+boylam+'&zoom=12&size=600x400&markers='+enlem+','+boylam+'&key=AIzaSyCmmKygTpBzHGOZEciJpAdxC9v_tWHagnE')
   .row 
     .col-xs-12 
@@ -48,140 +48,17 @@ block content
           a.btn.btn-default.pull-right(href="/mekan/yorum/yeni") Yorum Ekle 
           h2.panel-title Müşteri Yorumları
         .panel-body.review-container
-          .row 
-            .review 
-              .well.well-sm.review-header
-                span.rating 
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star-empty
-                span.review-author Muratcan Kaynak 
-                span.reviewTimestap &nbsp; 14 Ekim 2022
-              .col-xs-12
-                p Daha iyisini yemedim.
-  .row.page-header
-    .col-lg-12
-      h1 Starbucks
-  .row 
-    .col-xs-12.col-md-12 
-      .row
-        .col-xs-12.col-sm-6 
-          p.rating 
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty 
-          p Centrum Garden AVM 
-          .panel.panel-primary 
-            .panel-heading
-              h2.panel-title Açılış Saatleri
-            .panel-body
-              p
-                | Pazartesi-Cuma: 7:00-23:00
-              p 
-                | Cumartesi-Pazar: 9:00-22:00
-          .panel.panel-primary 
-            .panel-heading 
-              h2.panel-title Neler Var ?
-            .panel-body
-              span.label.label-warning Dünya Kahveleri
-              | &nbsp;
-              span.label.label-warning Kekler 
-              | &nbsp;
-              span.label.label-warning Pastalar 
-              | &nbsp;
-        .col-xs-12.col-sm-6
-          .panel.panel-primary 
-            .panel-heading
-              h2.panel-title Konum Bilgisi
-            .panel-body
-              -var enlem=37.78
-              -var boylam=30.56
-              img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center='+enlem+','+boylam+'&zoom=12&size=600x400&markers='+enlem+','+boylam+'&key=AIzaSyCmmKygTpBzHGOZEciJpAdxC9v_tWHagnE')
-  .row 
-    .col-xs-12 
-      .panel.panel-primary 
-        .panel-heading
-          a.btn.btn-default.pull-right(href="/mekan/yorum/yeni") Yorum Ekle 
-          h2.panel-title Müşteri Yorumları
-        .panel-body.review-container
-          .row 
-            .review 
-              .well.well-sm.review-header
-                span.rating 
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star-empty
-                span.review-author Asım Sinan Yüksel 
-                span.reviewTimestap &nbsp; 13 Ekim 2022
-              .col-xs-12
-                p Kahveler Güzel 
-  .row.page-header
-    .col-lg-12
-      h1 Umut Pide
-  .row 
-    .col-xs-12.col-md-12 
-      .row
-        .col-xs-12.col-sm-6 
-          p.rating 
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty 
-          p Sanayi Mahallesi
-          .panel.panel-primary 
-            .panel-heading
-              h2.panel-title Açılış Saatleri
-            .panel-body
-              p
-                | Pazartesi-Cuma: 7:30-23:00
-              p 
-                | Cumartesi-Pazar: 7:00-22:00
-          .panel.panel-primary 
-            .panel-heading 
-              h2.panel-title Neler Var ?
-            .panel-body
-              span.label.label-warning Kuşbaşılı Pide
-              | &nbsp;
-              span.label.label-warning Kıymalı Pide 
-              | &nbsp;
-              span.label.label-warning Kaşarlı Pide
-              | &nbsp;
-        .col-xs-12.col-sm-6
-          .panel.panel-primary 
-            .panel-heading
-              h2.panel-title Konum Bilgisi
-            .panel-body
-              -var enlem=37.78
-              -var boylam=30.56
-              img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center='+enlem+','+boylam+'&zoom=12&size=600x400&markers='+enlem+','+boylam+'&key=AIzaSyCmmKygTpBzHGOZEciJpAdxC9v_tWHagnE')
-  .row 
-    .col-xs-12 
-      .panel.panel-primary 
-        .panel-heading
-          a.btn.btn-default.pull-right(href="/mekan/yorum/yeni") Yorum Ekle 
-          h2.panel-title Müşteri Yorumları
-        .panel-body.review-container
-          .row 
-            .review 
-              .well.well-sm.review-header
-                span.rating 
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star
-                span.glyphicon.glyphicon-star-empty
-                span.review-author Eren Ergin
-                span.reviewTimestap &nbsp; 14 Ekim 2022
-              .col-xs-12
-                p Her gün yiyorum ve doymuyorum. 
-              
+          each yorum in mekanDetay.yorumlar
+            .row 
+              .review 
+                .well.well-sm.review-header
+                  span.rating 
+                    +puanOlustur(yorum.yapan)
+                
+                  span.review-author=yorum.yorumYapan
+                  small.reviewTimestap &nbsp;  #{yorum.tarih}
+                .col-xs-12
+                  p= yorum.yorumMetni
   
           
 
