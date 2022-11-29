@@ -5,3 +5,8 @@
 ![yorumgetirme](./resimler/yorumgetirme.png)
 [3.Girilen Konum Civarındaki Mekanları Listele](https://mekanbul-4.muratcankaynak.repl.co/api/mekanlar?enlem=37.8&boylam=35.4)
 ![mekanenlemboylam](./resimler/mekanenlemboylam.png)
+# Mekanbul REST API Adresleri
+1.API Collections Test
+![thunder client test](/resimler/runall.png)
+2.API Mocha Test
+![api mocha test](/resimler/testekrani.png)
