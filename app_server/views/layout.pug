@@ -1,34 +1,26 @@
 doctype html
 html
   head
-    meta(name='viewport',content="width=device-width,initial-scale=1.0")
+    meta(name = 'viewport', content='width=device-width,initial-scale=1.0')
     title= baslik 
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
   body
-    .navbar-default.navbar.navbar-fixex-top 
-      .container 
-        .navbar-header 
+    .navbar-default.navbar.navbar-fixed-top
+      .container
+        .navbar-header
           a.navbar-brand('/') MekanBul
-          button.navbar-toggle(type="button",data-toggle="collapse",data-target="#navbar-main")
-            span.icon-bar 
-            span.icon-bar 
-            span.icon-bar 
-        #navbar-main.navbar-collapse.collapse
-          ul.nav.navbar-nav   
+          button.navbar-toggle(type='button',data-toggle='collapse',data-target='#navbar-main')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #navbar-main.navbar-collapse.collapse 
+          ul.nav.navbar-nav 
             li 
-              a(href='/hakkinda') Hakkında 
-  .container
+              a(href='/hakkinda') Hakkında
+  .container  
     block content
-<<<<<<< HEAD
-    footer 
-      .col-12   
-        small &copy; Muratcan Kaynak 2022
-  script(src='/javascripts/jquery-3.6.1.min.js')
-  script(src='/bootstrap/js/bootstrap.min.js')
-=======
     footer  
       .col-12 
-        small &copy; Muratcan Kaynak 2022
+        small &copy; Yağız Şahinler 2022
 script(src='/javascripts/jquery-3.6.1.min.js')
 script(src='/bootstrap/js/bootstrap.min.js')
->>>>>>> 46977a7 (kesin1)
