@@ -7,13 +7,24 @@ block content
         h1 
           |  #{sayfaBaslik.siteAd}
           small &nbsp; #{sayfaBaslik.slogan}
+<<<<<<< HEAD
   .row
+=======
+  .row 
+  .error=mesaj
+>>>>>>> 46977a7 (kesin1)
     each mekan in mekanlar
       .row.list-group 
       .col-xs-12.col-sm-12 
         .col-xs-12.list-group-item
+<<<<<<< HEAD
           h4 
             a(href="/mekan") #{mekan.ad}
+=======
+          h4
+            -var mekanid=mekan._id
+            a(href='/mekan/'+mekanid) #{mekan.ad}
+>>>>>>> 46977a7 (kesin1)
             small &nbsp;
             +puanOlustur(mekan.puan)
             

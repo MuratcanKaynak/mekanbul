@@ -1,5 +1,6 @@
 var mongoose=require("mongoose");
 require("./mekansema");
+<<<<<<< HEAD
 var dbURI="mongodb://localhost/mekanbul";
 //var dbURI = 'mongodb+srv://muratcankaynak:webodevi123@mekanbul.q6qlga7.mongodb.net/mekanbul?retryWrites=true&w=majority'; 
 mongoose.connect(dbURI); 
@@ -9,6 +10,16 @@ function kapat(msg,callback){
         callback();
     }
     );
+=======
+var dbURI = "mongodb://localhost/mekanbul";
+//var dbURI="mongodb+srv://muratcankaynak:<webodevi123>@mekanbul.q6qlga7.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(dbURI);
+function kapat(msg, callback) {
+  mongoose.connection.close(function () {
+    console.log(msg);
+    callback();
+  });
+>>>>>>> 46977a7 (kesin1)
 }
 process.on("SIGINT",function(){
 kapat("Uygulama kapatıldı!",function(){
